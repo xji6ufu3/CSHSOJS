@@ -1,29 +1,62 @@
-#include <iostream>
+#include<iostream>
 #include<sstream>
 using namespace std;
 int main(void)
 {
-	ios_base::sync_with_stdio(false);
-	cin.tie(0),cout.tie(0);
-	string str;
-	while(getline(cin,str) && str!="~"){
-		stringstream ss(str);
-		string newstr="",count;
-		int ans=0,time=1;
-		char c;
-		while(ss>>str and str!="#"){
-			ss>>count;
-			if(str.size()==1) c='1';
-			else c='0';
-			for(int q=0;q<count.size()-2;q++) newstr+=c;
-		}
-		bool b[newstr.size()];
-		for(int q=newstr.size()-1;q>=0;q--){
-			ans+=((int)newstr[q]-'0') * time;
-			time*=2;
-		}
-		cout<<ans<<'\n';
-	}
-	return 0;
+    ios_base::sync_with_stdio(false);
+    cin.tie(0),cout.tie(0);
+    string str;
+    while(getline(cin,str) && str!="~"){
+        stringstream ss(str);
+        string newstr="",count;
+        int ans=0,time=1;
+        char c;
+        while(ss>>str and str!="#"){
+            ss>>count;
+            if(str.size()==1) c='1';
+            else c='0';
+            for(int q=0;q<count.size()-2;q++) newstr+=c;
+        }
+        bool b[newstr.size()];
+        for(int q=newstr.size()-1;q>=0;q--){
+            ans+=((int)newstr[q]-'0') * time;
+            time*=2;
+        }
+        cout<<ans<<'\n';
+    }
+    return 0;
 }
+/**************************************************************
+題目描述
+我們都知道 n 進位的數字系統，使用 n 個符號來表示數值。例如我們最常使用的10進位系統，即使用0~9這10符號來表示數值。因此，一進位的數字系統，只能用 '0' 這個符號來表示。以下是一進位數字系統的表示方法，每個數值(以一行表示)包含許多由空白隔開的 '0' 的區塊，每個區塊包含一個以上的 '0' 。
+    (1) 一個區塊只有一個 '0'：表示接下來出現的值為 1（即註標值為 1)。
+    (2) 一個區塊有兩個 '0'：表示接下來出現的值為 0（即註標值為 0)。
+    (3) 一個區塊有 n (n>2)個 '0'：表示出現(n-2)個註標值。
 
+注意：每個數值的第一個區塊，最多只有兩個 '0'。例如：一進位系統的數值 "0 0000 00 000 0 0000" ，依照上述的表示方法，即可轉換為二進位系統的 "11011"。
+
+轉換後的二進位數字，最多不會超過 30 位數。轉換完成後，請將此二進位數值轉換成十進位(即為 27)輸出。
+
+輸入
+輸入檔每行代表一個一進位的數值，最後以 "#" 符號結束。若讀取到某一行只包含一個字元 "~"，則結束本程式。
+
+輸出
+將每一個一進位數值轉換成十進位後，以一行輸出。
+
+輸入範例
+0 0000 00 000 0 0000 #
+0 0000 #
+~
+輸出範例
+27
+3
+**************************************************************/
+
+/**************************************************************
+    Problem: 1002
+    User: max2124
+    Language: C++
+    Result: Accepted
+    Time:12 ms
+    Memory:1560 kb
+****************************************************************/
